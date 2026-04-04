@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link class="image/png" rel="icon" href="https://i.postimg.cc/Z947GcJ5/Moon-Head-Shop-Icon.jpg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Moon HeadShop</title>
+
+    <style>
+   
+       /* 1. CONFIGURAÇÕES GERAIS (Para PC e Mobile) */
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(180deg, #14001f, #2d004d);
+        color: white;
+        min-height: 100vh;
+        overflow-x: hidden; /* Importante para o mobile não ter barra lateral */
+    }
+
+    header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 15px 40px; /* Padding padrão do PC */
+        background: rgba(0,0,0,0.8); /* Cor sólida para garantir visibilidade */
+        backdrop-filter: blur(10px);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .logo img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: 2px solid #7b2cbf;
+    }
+
+    .logo h1 {
+        margin: 0;
+        color: #d9a3ff;
+        font-size: 1.5rem;
+    }
+
+    .instagram {
+        text-decoration: none;
+        background: #7b2cbf;
+        padding: 10px 20px;
+        border-radius: 8px;
+        color: white;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+    .menu {
+        text-align: center;
+        padding: 25px;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .menu button {
+        padding: 8px 15px;
+        border: 1px solid #7b2cbf;
+        border-radius: 20px;
+        background: transparent;
+        color: white;
+        cursor: pointer;
+    }
+
+    .products {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 25px;
+        padding: 20px 5%;
+    }
+
+    .card {
+        background: rgba(255,255,255,0.05);
+        padding: 20px;
+        border-radius: 15px;
+        text-align: center;
+        border: 1px solid rgba(186,85,255,0.1);
+    }
+
+    .card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-bottom: 15px;
+        display: block; /* Garante que a imagem carregue */
+    }
+
+    .price {
+        color: #c77dff;
+        font-size: 1.3em;
+        font-weight: bold;
+        margin: 10px 0;
+    }
+
+    button.add {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 8px;
+        background: #7b2cbf;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    footer {
+        text-align: center;
+        padding: 40px;
+        margin-top: 50px;
+        background: rgba(0,0,0,0.5);
+        color: #aaa;
+    }
+
+    /* =======================================================
+       2. REGRAS EXCLUSIVAS PARA O COMPUTADOR (PC)
+       ======================================================= */
+    @media (min-width: 601px) {
+        .cart {
+            position: fixed;
+            right: 20px; /* Espaço da borda direita no PC */
+            bottom: 20px; /* Fica no canto inferior no PC */
+            width: 320px; /* Largura fixa e normal do PC */
+            background: #240046; /* Cor sólida */
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid #7b2cbf;
+            z-index: 1000;
+            display: none; /* Começa escondido */
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+    }
+
+    /* =======================================================
+       3. REGRAS EXCLUSIVAS PARA O CELULAR (MOBILE)
+       ======================================================= */
+    @media (max-width: 600px) {
+        
+        /* Ajuste do Header Mobile: Trás o ícone para dentro da tela */
+        header {
+            padding: 10px 15px !important; /* Folga de segurança nas laterais */
+            justify-content: space-between !important;
+        }
+
+        .logo h1 {
+            font-size: 1.1rem; /* Texto menor para caber os botões */
+        }
+
+        .logo img {
+            width: 35px;
+            height: 35px;
+        }
+
+        /* O grupo de botões no header (se você criou a div para uni-los) */
+        header div[style*="display: flex"] {
+            margin-right: 0 !important; /* Remove qualquer margem que expulse o botão */
+            gap: 5px !important; /* Botões mais próximos */
+        }
+
+        .instagram {
+            padding: 6px 10px;
+            font-size: 0.8rem;
+        }
+
+        /* Ajuste do Botão do Carrinho no Header (Se você adicionou o botão verde) */
+        .cart-icon-btn {
+            padding: 6px 10px !important;
+        }
+
+        /* Ajuste do Carrinho Mobile: Aba Lateral Cheia */
+        .cart {
+            display: none; /* Começa escondido */
+            position: fixed !important;
+            right: 0 !important;
+            top: 0 !important;
+            bottom: 0 !important;
+            width: 85% !important; /* Ocupa 85% da largura da tela */
+            height: 100vh !important; /* Altura inteira da tela */
+            background: #1a0033 !important; /* Cor sólida e escura */
+            border-radius: 15px 0 0 15px !important; /* Arredonda só o lado esquerdo */
+            padding: 20px;
+            z-index: 2000;
+            box-sizing: border-box; /* Garante que o padding não aumente o tamanho */
+            box-shadow: -5px 0 15px rgba(0,0,0,0.5);
+            overflow-y: auto; /* Permite rolar o carrinho se tiver muitos itens */
+        }
+
+        /* Ajuste para garantir que as fotos apareçam no mobile */
+        .products {
+            grid-template-columns: 1fr; /* Uma coluna só no celular */
+            padding: 10px;
+        }
+
+        .card img {
+            height: 150px; /* Diminui a altura da foto no celular */
+            max-width: 100%;
+        }
+    }
+
+    </style>
+    
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <img src="src/MoonHeadShop-Icon.jpeg" alt="Logo">
+        <h1>Moon HeadShop</h1>
+    </div>
+    
+    <div  class="cart-btn" style="display: flex; gap: 10px; align-items: center; margin-right: -800px;">
+        <button onclick="toggleCart()" style="background: #7b2cbf; border: none; color: white; padding: 8px 12px; border-radius: 8px; cursor: pointer; font-weight: bold;">
+            🛒 <span id="cart-count"></span>
+        </button>
+    </div>
+
+    <a class="instagram" href="https://instagram.com/moonheadshop7/" target="_blank">Instagram</a>
+</header>
+
+<div class="cart" id="floating-cart" style="display: none;"> <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+    <h3 style="margin: 0;"> 🛒 Seu Carrinho</h3>
+    <button onclick="toggleCart()" style="background: none; border: none; color: #d9a3ff; font-size: 1.5rem; cursor: pointer;">x</button>
+</div>
+<ul id="cart-list" style="list-style: none; padding: 0; max-height: 200px; overflow-y: auto;"></ul>
+<hr style="border: 0.5px solid #7b2cbf;">
+    <p><strong>Total: R$ <span id="total">0.00</span></strong></p>
+    <button onclick="finalizarCompra()" style="width:100%; padding:12px; background:#25d366; border:none; border-radius:8px; color:white; font-weight:bold; cursor:pointer;">Finalizar no WhatsApp</button>
+</div>
+
+<div class="menu">
+    <button onclick="filterProducts('all')">Todos</button>
+    <button onclick="filterProducts('tabaco')">Tabacos</button>
+    <button onclick="filterProducts('seda')">Sedas</button>
+    <button onclick="filterProducts('piteira')">Piteira</button>
+    <button onclick="filterProducts('isqueiro')">Isqueiros</button>
+    <button onclick="filterProducts('bandeja')">Bandejas</button> 
+    <button onclick="filterProducts('cinzeiro')">Cinzeiros</button>
+    <button onclick="filterProducts('case')">Cases</button>
+    <button onclick="filterProducts('dichavador')">Dichavadores</button>
+    <button onclick="filterProducts('tesoura')">Tesouras</button>
+    <button onclick="filterProducts('cuias')">Cuias</button>
+</div>
+
+<section class="products">
+
+    <!-- TABACOS -->
+
+    <div class="card" data-category="tabaco">
+        <img src="https://i.postimg.cc/kRmbrz9m/thetog2.webp" alt="Tabaco Golden Virginia The Tog 25g">
+        <h3>Tabaco Golden Virginia The Tog 25g</h3>
+        <p class="price">R$ 8,60</p>
+        <button class="add" onclick="addToCart(16, 'Tabaco Golden Virginia The Tog 25g')">Adicionar</button>
+    </div>
+    
+    <div class="card" data-category="tabaco">
+         <img src="https://i.postimg.cc/5Hsmy06p/amsterdam.webp" alt="Tabaco Amsterdam 25g"> 
+         <h3>Tabaco Amsterdam 25g</h3> 
+         <p class="price">R$ 11,50</p> 
+         <button class="add" onclick="addToCart(18, 'Tabaco Amsterdam 25g')">Adicionar</button> 
+    </div> 
+
+<!-- SEDAS -->
+
+    <div class="card" data-category="seda">
+        <img src="https://i.postimg.cc/Th79DdTF/seda-sadhu-king-size-1.jpg" alt="Seda Sadhu Black King Size">
+        <h3>Seda Sadhu Black King Size</h3>
+        <p class="price">R$ 4,99</p>
+        <button class="add" onclick="addToCart(7, 'Seda Sadhu Black King Size')">Adicionar</button>
+    </div>
+
+    <div class="card" data-category="seda">
+        <img src="https://i.postimg.cc/SXFt9QhJ/minisizekingpaper.webp" alt="Seda Brown Mini Size King Paper">
+        <h3>Seda Brown Mini Size King Paper</h3>
+        <p class="price">R$ 3,49</p>
+        <button class="add" onclick="addToCart(4, 'Seda Brown Mini Size King Paper')">Adicionar</button>
+    </div>
+
+    <div class="card" data-category="seda">
+        <img src="https://i.postimg.cc/ZC6xDrrp/kingpaperkingsize.jpg" alt="Seda Brown King Size King Paper">
+        <h3>Seda Brown King Size King Paper</h3>
+        <p class="price">R$ 4,49</p>
+        <button class="add" onclick="addToCart(4, 'Seda Brown King Size King Paper')">Adicionar</button>
+    </div>
+
+    <div class="card" data-category="seda">
+        <img src="https://i.postimg.cc/8sMv1TjL/seda-sadhu-black-1-1-4-1.jpg" alt="Seda Sadhu Black 11/4 Large">
+        <h3>Seda Sadhu Black 11/4 Large</h3>
+        <p class="price">R$ 3,99</p>
+        <button class="add" onclick="addToCart(4, 'Seda Sadhu Black 11/4 Large')">Adicionar</button>
+    </div>
+
+     <div class="card" data-category="seda">
+        <img src="https://i.postimg.cc/tnRcMTY7/bluntmix.webp" alt="Blunt Mix King Size">
+        <h3>Blunt Mix King Size King Paper</h3>
+        <p class="price">R$ 11,99</p>
+        <button class="add" onclick="addToCart(6, 'Blunt Mix King Size')">Adicionar</button>
+    </div>
+
+<!-- PITEIRAS -->
+
+
+    <div class="card" data-category="piteira">
+        <img src="https://i.postimg.cc/N9J2n0M2/sadhueveningxlarge.webp" alt="Piteira Sadhu Evening X-Large Brown">
+        <h3>Piteira Sadhu Evening X-Large Brown</h3>
+        <p class="price">R$ 4,49</p>
+        <button class="add" onclick="addToCart(10, 'Piteira Sadhu Evening X-Large Brown')">Adicionar</button>
+    </div>
+
+    <div class="card" data-category="piteira">
+        <img src="https://i.postimg.cc/210YhLXV/sadhubrownlarge.jpg" alt="Piteira Sadhu Brown Large">
+        <h3>Piteira Sadhu Brown Large</h3>
+        <p class="price">R$ 3,99</p>
+        <button class="add" onclick="addToCart(7, 'Piteira Sadhu Brown Large')">Adicionar</button>
+    </div>
+    
+    <div class="card" data-category="piteira">
+        <img src="https://i.postimg.cc/d7jZ96z5/filtronightlong.jpg" alt="Filtro Night Long">
+        <h3>Filtro Night Long</h3>
+        <p class="price">R$ 11,99</p>
+        <button class="add" onclick="addToCart(7, 'Filtro Night Long')">Adicionar</button>
+    </div>
+
+    <div class="card" data-category="piteira">
+        <img src="https://i.postimg.cc/xqk33D1T/piteira-de-vidro-anti-stress-6x70mm-2990.jpg" alt="Piteira Anti Stress">
+        <h3>Piteira Anti Stress</h3>
+        <p class="price">R$ 17,99</p>
+        <button class="add" onclick="addToCart(7, 'Piteira Anti Stress')">Adicionar</button>
+    </div>
+
+     <div class="card" data-category="piteira">
+        <img src="https://i.postimg.cc/RWGgb1rd/piteirahellokitty.jpg" alt="Piteira Hello Kitty">
+        <h3>Piteira Hello Kitty</h3>
+        <p class="price">R$ 9,99</p>
+        <button class="add" onclick="addToCart(7, 'Piteira Hello Kitty')">Adicionar</button>
+    </div>
+
+<!-- ISQUEIROS -->
+
+<div class="card" data-category="isqueiro">
+        <img src="https://i.postimg.cc/hzkgFKbG/isqueirogti.webp" alt="Isqueiro Max Solido GTI">
+        <h3>Isqueiro Max Solido GTI UN</h3>
+        <p class="price">R$ 4,99</p>
+        <button class="add" onclick="addToCart(7, 'Isqueiro Max Solido GTI')">Adicionar</button>
+    </div>
+
+<!-- BANDEIJAS -->
+
+<div class="card" data-category="bandeja">
+        <img src="https://i.postimg.cc/nXySbFSF/bandejabros01.jpg" alt="Bandeja Metal Bros">
+        <h3>Bandeja Metal Bros</h3>
+        <p class="price">R$ 24,99</p>
+        <button class="add" onclick="addToCart(7, 'Bandeja Metal Bros')">Adicionar</button>
+    </div>
+
+    <div class="card" data-category="bandeja">
+        <img src="https://i.postimg.cc/sQ7v6cQ2/bandeijabros02.webp" alt="Bandeja Metal Bros">
+        <h3>Bandeja Metal Bros</h3>
+        <p class="price">R$ 24,99</p>
+        <button class="add" onclick="addToCart(7, 'Bandeja Metal Bros')">Adicionar</button>
+    </div>
+
+     <div class="card" data-category="bandeja">
+        <img src="https://i.postimg.cc/jCT678FS/bandejaculturadab.webp" alt="Bandeja Cultura DAB">
+        <h3>Bandeja Metal Cultura DAB</h3>
+        <p class="price">R$ 29,99</p>
+        <button class="add" onclick="addToCart(7, 'Bandeja Cultura DAB')">Adicionar</button>
+    </div>
+    
+<!-- CUIA -->
+
+<div class="card" data-category="cuias">
+        <img src="https://i.postimg.cc/wymMRf0C/cuiavintage.jpg" alt="Cuia Abduzido Vintage">
+        <h3>Cuia Abduzido Vintage UN </h3>
+        <p class="price">R$ 19,99</p>
+        <button class="add" onclick="addToCart(7, 'Cuia Abduzido Vintage')">Adicionar</button>
+    </div>
+
+
+<!-- CINZEIROS -->
+
+<div class="card" data-category="cinzeiro">
+        <img src="https://i.postimg.cc/8fpCzV5b/cinzeiroespantalho.webp" alt="Cinzeiro Metal Espantalho">
+        <h3>Cinzeiro Metal Espantalho </h3>
+        <p class="price">R$ 14,99</p>
+        <button class="add" onclick="addToCart(7, 'Cinzeiro Metal Espantalho')">Adicionar</button>
+    </div>
+
+    <div class="card" data-category="cinzeiro">
+        <img src="https://i.postimg.cc/t1rbNVC5/cinzeiroabobora.jpg" alt="Cinzeiro Metal Abóbora">
+        <h3>Cinzeiro Metal Abóbora </h3>
+        <p class="price">R$ 14,99</p>
+        <button class="add" onclick="addToCart(7, 'Cinzeiro Metal Abóbora')">Adicionar</button>
+    </div>
+
+       <div class="card" data-category="cinzeiro">
+        <img src="https://i.postimg.cc/BLxgG2Lj/cinzeirouniverso7.jpg" alt="Cinzeiro Metal Universo">
+        <h3>Cinzeiro Metal Universo </h3>
+        <p class="price">R$ 14,99</p>
+        <button class="add" onclick="addToCart(7, 'Cinzeiro Metal Universo')">Adicionar</button>
+    </div>
+
+<!-- CASES -->
+
+<div class="card" data-category="case">
+        <img src="https://i.postimg.cc/tZ7Lc5zJ/casehimalaya.webp" alt="Case Himalaya Spliff">
+        <h3>Case Himalaya Spliff </h3>
+        <p class="price">R$ 34,99</p>
+        <button class="add" onclick="addToCart(7, 'Case Himalaya Spliff')">Adicionar</button>
+    </div>
+
+
+<!-- DICHAVADORES -->
+
+<div class="card" data-category="dichavador">
+        <img src="https://i.postimg.cc/LghSwvbW/dichavadores.jpg" alt="Dichavador Sortido">
+        <h3>Dichavador Sortido UN</h3>
+        <p class="price">R$ 9,99</p>
+        <button class="add" onclick="addToCart(7,'Dichavador Sortido')">Adicionar</button>
+    </div>
+
+<!-- TESOURAS -->
+
+<div class="card" data-category="tesoura">
+        <img src="https://i.postimg.cc/rRDdjyyq/tesoura.jpg" alt="Tesoura de Metal Dobrável">
+        <h3>Tesoura de Metal Dobrável</h3>
+        <p class="price">R$ 19,99</p>
+        <button class="add" onclick="addToCart(7,'Tesoura de Metal Dobrável')">Adicionar</button>
+    </div>
+
+</section>
+
+<div class="cart" id="floating-cart">
+    <h3>🛒 Seu Carrinho</h3>
+    <ul id="cart-list" style="list-style: none; padding: 0; max-height: 150px; overflow-y: auto;"></ul>
+    <hr style="border: 0.5px solid #7b2cbf;">
+    <p><strong>Total: R$ <span id="total">0.00</span></strong></p>
+    <button onclick="finalizarCompra()" style="width:100%; padding:12px; background:#25d366; border:none; border-radius:8px; color:white; font-weight:bold; cursor:pointer;">Finalizar no WhatsApp</button>
+</div>
+
+<footer>
+    Venda exclusiva para maiores de 18 anos • MoonHeadShop © 2026
+</footer>
+
+<script>
+let cart = [];
+
+function addToCart(price, name) {
+    const item = cart.find(prod => prod.name === name);
+    if(item){
+        item.quantity++;
+    } else {
+        cart.push({ price, name, quantity: 1 });
+    }
+    document.getElementById("floating-cart").style.display = "block"; // Mostra o carrinho ao adicionar
+    renderCart();
+}
+
+function removeItem(index) {
+    if (cart[index].quantity > 1){
+        cart[index].quantity--;
+    } else {
+        cart.splice(index , 1);
+    }
+    if(cart.length === 0) document.getElementById("floating-cart").style.display = "none";
+    renderCart();
+}
+
+function renderCart() {
+    const cartList = document.getElementById("cart-list");
+    const totalDisplay = document.getElementById("total");
+    const cartCount = document.getElementById("cart-count");
+
+    cartList.innerHTML = "";
+    let totalAcumulado = 0; 
+    let totalItem = 0;
+
+    cart.forEach((item, index) => {
+        totalAcumulado += item.price * item.quantity;
+        totalItem += item.quantity; 
+        const li = document.createElement("li");
+        li.style.display = "flex";
+        li.style.justifyContent = "space-between";
+        li.style.alignItems = "center";
+        li.style.marginBottom = "10px";
+        li.style.fontSize = "0.85em";
+
+        li.innerHTML = `
+            <span>${item.quantity}x ${item.name}</span>
+            <div>
+                <span>R$ ${(item.price * item.quantity).toFixed(2)}</span>
+                <button onclick="removeItem(${index})" 
+                    style="margin-left:8px; background:#ff4d4d; border:none; color:white; border-radius:4px; cursor:pointer; padding: 2px 6px;">✕</button>
+            </div>
+        `;
+        cartList.appendChild(li);
+    });
+    totalDisplay.innerText = totalAcumulado.toFixed(2);
+    cartCount.innerText = totalItem;
+}
+
+function filterProducts(category) {
+    const cards = document.querySelectorAll(".card");
+    cards.forEach(card => {
+        if (category === "all") {
+            card.style.display = "";
+        } else {
+            card.dataset.category === category ? card.style.display = "" : card.style.display = "none";
+        }
+    });
+}
+
+function finalizarCompra() {
+    if(cart.length === 0) return;
+    let mensagem = "☾ *Novo Pedido - Moon HeadShop*\n\n";
+    let totalPedido = 0;
+    cart.forEach(item => {
+        mensagem += `• *${item.quantity}x* ${item.name} - R$ ${(item.price * item.quantity).toFixed(2)}\n`;
+        totalPedido += item.price * item.quantity;
+    });
+    
+    mensagem += `\n*Total:* R$ ${totalPedido.toFixed(2)}`;
+    mensagem += `• *Total:* R$ ${totalPedido.toFixed(2)}\n`;
+    mensagem += `• *Pagamento:* (Informe aqui: Pix, Cartão ou Dinheiro)\n`;
+    mensagem += `• *Endereço:* (Informe seu endereço completo)\n`;
+
+    const numero = "557184565154"; 
+    window.open(`https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`, "_blank");
+}
+
+function toggleCart() {
+    const cartElement = document.getElementById("floating-cart");
+    
+    if (cartElement.style.display === "block") {
+        cartElement.style.display = "none";
+    } else {
+        cartElement.style.display = "block";
+    }
+}
+
+</script>
+
+</body>
+</html>
