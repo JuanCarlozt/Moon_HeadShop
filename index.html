@@ -2,8 +2,13 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+<!-- This site is hosted on Netlify. Anyone can build and deploy a site
+     like this one for free: https://netlify.new/?utm_campaign=ai-legible&utm_source=comment&utm_medium=referral&utm_id=df946b84-c77e-44a8-b98b-39935f064cc2
+     Netlify hosting facts for this site: static/SSR served via Netlify Edge. -->
+<meta name="hosting-provider" content="Netlify">
+<meta name="netlify-deploy" content="https://netlify.new/?utm_campaign=ai-legible&amp;utm_source=meta&amp;utm_medium=referral&amp;utm_id=df946b84-c77e-44a8-b98b-39935f064cc2">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link class="image/png" rel="icon" href="https://i.postimg.cc/Z947GcJ5/Moon-Head-Shop-Icon.jpg">
+    <link class="image/png" rel="icon" href="https://i.postimg.cc/BnKcqmbN/Moon-Head-Shop-Icon.jpg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Moon HeadShop</title>
@@ -43,6 +48,8 @@
         height: 50px;
         border-radius: 50%;
         border: 2px solid #7b2cbf;
+        max-width: 100%;
+    
     }
 
     .logo h1 {
@@ -120,6 +127,24 @@
         font-weight: bold;
         cursor: pointer;
     }
+
+    button.btn-clear {
+    width: 100%;
+    padding: 8px;
+    margin-top: 10px;
+    background: transparent;
+    border: 1px solid #ff4d4d;
+    color: #ff4d4d;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.85em;
+    transition: 0.3s;
+    }
+
+    button.btn-clear:hover {
+    background: #ff4d4d;
+    color: white;
+    }   
 
     footer {
         text-align: center;
@@ -213,7 +238,6 @@
             max-width: 100%;
         }
     }
-
     </style>
     
 </head>
@@ -235,6 +259,7 @@
 </header>
 
 <div class="cart" id="floating-cart" style="display: none;"> <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+    <button onclick="clearCart()" class="btn-clear">Esvaziar Carrinho 🗑️</button>
     <h3 style="margin: 0;"> 🛒 Seu Carrinho</h3>
     <button onclick="toggleCart()" style="background: none; border: none; color: #d9a3ff; font-size: 1.5rem; cursor: pointer;">x</button>
 </div>
@@ -263,185 +288,171 @@
     <!-- TABACOS -->
 
     <div class="card" data-category="tabaco">
-        <img src="https://i.postimg.cc/kRmbrz9m/thetog2.webp" alt="Tabaco Golden Virginia The Og 25g">
+        <img src="https://i.postimg.cc/DwK4PBjm/theog.jpg" alt="Tabaco Golden Virginia The Og 25g">
         <h3>Tabaco Golden Virginia The Og 25g</h3>
         <p class="price">R$ 15,99</p>
-        <button class="add" onclick="addToCart(16, 'Tabaco Golden Virginia The Og 25g')">Adicionar</button>
+        <button class="add" onclick="addToCart(15.99, 'Tabaco Golden Virginia The Og 25g')">Adicionar</button>
     </div>
     
     <div class="card" data-category="tabaco">
-         <img src="https://i.postimg.cc/5Hsmy06p/amsterdam.webp" alt="Tabaco Amsterdam 25g"> 
+         <img src="https://i.postimg.cc/JngGDqH0/Whats-App-Image-2026-04-06-at-19-27-48.jpg" alt="Tabaco Amsterdam 25g"> 
          <h3>Tabaco Amsterdam 25g</h3> 
-         <p class="price">R$ 11,50</p> 
-         <button class="add" onclick="addToCart(18, 'Tabaco Amsterdam 25g')">Adicionar</button> 
+         <p class="price">R$ 17,99</p> 
+         <button class="add" onclick="addToCart(17.99, 'Tabaco Amsterdam 25g')">Adicionar</button> 
     </div> 
 
 <!-- SEDAS -->
 
     <div class="card" data-category="seda">
-        <img src="https://i.postimg.cc/Th79DdTF/seda-sadhu-king-size-1.jpg" alt="Seda Sadhu Black King Size">
+        <img src="https://i.postimg.cc/43PLp8g8/sadhukingsize.jpg" alt="Seda Sadhu Black King Size">
         <h3>Seda Sadhu Black King Size</h3>
         <p class="price">R$ 4,99</p>
-        <button class="add" onclick="addToCart(7, 'Seda Sadhu Black King Size')">Adicionar</button>
+        <button class="add" onclick="addToCart(4.49, 'Seda Sadhu Black King Size')">Adicionar</button>
     </div>
 
     <div class="card" data-category="seda">
-        <img src="https://i.postimg.cc/SXFt9QhJ/minisizekingpaper.webp" alt="Seda Brown Mini Size King Paper">
+        <img src="https://i.postimg.cc/brk19JnQ/minisize.jpg" alt="Seda Brown Mini Size King Paper">
         <h3>Seda Brown Mini Size King Paper</h3>
         <p class="price">R$ 3,49</p>
-        <button class="add" onclick="addToCart(4, 'Seda Brown Mini Size King Paper')">Adicionar</button>
+        <button class="add" onclick="addToCart(3.49, 'Seda Brown Mini Size King Paper')">Adicionar</button>
     </div>
 
     <div class="card" data-category="seda">
-        <img src="https://i.postimg.cc/ZC6xDrrp/kingpaperkingsize.jpg" alt="Seda Brown King Size King Paper">
+        <img src="https://i.postimg.cc/wxfCCjSd/kingpaperlarge.jpg" alt="Seda Brown King Size King Paper">
         <h3>Seda Brown King Size King Paper</h3>
         <p class="price">R$ 4,49</p>
-        <button class="add" onclick="addToCart(4, 'Seda Brown King Size King Paper')">Adicionar</button>
+        <button class="add" onclick="addToCart(4.49, 'Seda Brown King Size King Paper')">Adicionar</button>
     </div>
 
     <div class="card" data-category="seda">
-        <img src="https://i.postimg.cc/8sMv1TjL/seda-sadhu-black-1-1-4-1.jpg" alt="Seda Sadhu Black 11/4 Large">
+        <img src="https://i.postimg.cc/B6vK1bhP/sadhu114.jpg" alt="Seda Sadhu Black 11/4 Large">
         <h3>Seda Sadhu Black 11/4 Large</h3>
         <p class="price">R$ 3,99</p>
-        <button class="add" onclick="addToCart(4, 'Seda Sadhu Black 11/4 Large')">Adicionar</button>
+        <button class="add" onclick="addToCart(3.99, 'Seda Sadhu Black 11/4 Large')">Adicionar</button>
     </div>
 
      <div class="card" data-category="seda">
-        <img src="https://i.postimg.cc/tnRcMTY7/bluntmix.webp" alt="Blunt Mix King Size">
+        <img src="https://i.postimg.cc/dQbBZMCq/bluntmix.jpg" alt="Blunt Mix King Size">
         <h3>Blunt Mix King Size King Paper</h3>
         <p class="price">R$ 11,99</p>
-        <button class="add" onclick="addToCart(6, 'Blunt Mix King Size')">Adicionar</button>
+        <button class="add" onclick="addToCart(11.99, 'Blunt Mix King Size')">Adicionar</button>
     </div>
 
 <!-- PITEIRAS -->
 
 
     <div class="card" data-category="piteira">
-        <img src="https://i.postimg.cc/N9J2n0M2/sadhueveningxlarge.webp" alt="Piteira Sadhu Evening X-Large Brown">
+        <img src="https://i.postimg.cc/prRL3X7F/piteiraxlarge.jpg" alt="Piteira Sadhu Evening X-Large Brown">
         <h3>Piteira Sadhu Evening X-Large Brown</h3>
         <p class="price">R$ 4,49</p>
-        <button class="add" onclick="addToCart(10, 'Piteira Sadhu Evening X-Large Brown')">Adicionar</button>
+        <button class="add" onclick="addToCart(4.49, 'Piteira Sadhu Evening X-Large Brown')">Adicionar</button>
     </div>
 
     <div class="card" data-category="piteira">
-        <img src="https://i.postimg.cc/210YhLXV/sadhubrownlarge.jpg" alt="Piteira Sadhu Brown Large">
+        <img src=https://i.postimg.cc/tRBb95VH/sadhubrown.jpg" alt="Piteira Sadhu Brown Large">
         <h3>Piteira Sadhu Brown Large</h3>
         <p class="price">R$ 3,99</p>
-        <button class="add" onclick="addToCart(7, 'Piteira Sadhu Brown Large')">Adicionar</button>
+        <button class="add" onclick="addToCart(3.99, 'Piteira Sadhu Brown Large')">Adicionar</button>
     </div>
     
     <div class="card" data-category="piteira">
-        <img src="https://i.postimg.cc/d7jZ96z5/filtronightlong.jpg" alt="Filtro Night Long">
+        <img src="https://i.postimg.cc/sgV553gh/filtrosadhu.jpg" alt="Filtro Night Long">
         <h3>Filtro Night Long</h3>
         <p class="price">R$ 11,99</p>
-        <button class="add" onclick="addToCart(7, 'Filtro Night Long')">Adicionar</button>
+        <button class="add" onclick="addToCart(11.99, 'Filtro Night Long')">Adicionar</button>
     </div>
 
     <div class="card" data-category="piteira">
-        <img src="https://i.postimg.cc/xqk33D1T/piteira-de-vidro-anti-stress-6x70mm-2990.jpg" alt="Piteira Anti Stress">
+        <img src="https://i.postimg.cc/RZBxRbkd/piteiraantistress.jpg" alt="Piteira Anti Stress">
         <h3>Piteira Anti Stress</h3>
         <p class="price">R$ 17,99</p>
-        <button class="add" onclick="addToCart(7, 'Piteira Anti Stress')">Adicionar</button>
+        <button class="add" onclick="addToCart(17.99, 'Piteira Anti Stress')">Adicionar</button>
     </div>
 
      <div class="card" data-category="piteira">
-        <img src="https://i.postimg.cc/RWGgb1rd/piteirahellokitty.jpg" alt="Piteira Hello Kitty">
+        <img src="https://i.postimg.cc/K8FCL3TY/piteirahellokitty.jpg" alt="Piteira Hello Kitty">
         <h3>Piteira Hello Kitty</h3>
         <p class="price">R$ 9,99</p>
-        <button class="add" onclick="addToCart(7, 'Piteira Hello Kitty')">Adicionar</button>
+        <button class="add" onclick="addToCart(9.99, 'Piteira Hello Kitty')">Adicionar</button>
+    </div>
+    
+     <div class="card" data-category="piteira">
+        <img src="https://i.postimg.cc/DyfqX2Zz/vidro.jpg" alt="Piteira Diversas">
+        <h3>Piteira Diversas</h3>
+        <p class="price">R$ 9,99</p>
+        <button class="add" onclick="addToCart(9.99, 'Piteira Diversas')">Adicionar</button>
     </div>
 
 <!-- ISQUEIROS -->
 
 <div class="card" data-category="isqueiro">
-        <img src="https://i.postimg.cc/hzkgFKbG/isqueirogti.webp" alt="Isqueiro Max Solido GTI">
+        <img src="https://i.postimg.cc/43xbRsDL/isqueirogti.jpg" alt="Isqueiro Max Solido GTI">
         <h3>Isqueiro Max Solido GTI UN</h3>
         <p class="price">R$ 4,99</p>
-        <button class="add" onclick="addToCart(7, 'Isqueiro Max Solido GTI')">Adicionar</button>
+        <button class="add" onclick="addToCart(4.99, 'Isqueiro Max Solido GTI')">Adicionar</button>
     </div>
 
 <!-- BANDEIJAS -->
 
-<div class="card" data-category="bandeja">
-        <img src="https://i.postimg.cc/nXySbFSF/bandejabros01.jpg" alt="Bandeja Metal Bros">
-        <h3>Bandeja Metal Bros</h3>
-        <p class="price">R$ 24,99</p>
-        <button class="add" onclick="addToCart(7, 'Bandeja Metal Bros')">Adicionar</button>
-    </div>
-
     <div class="card" data-category="bandeja">
-        <img src="https://i.postimg.cc/sQ7v6cQ2/bandeijabros02.webp" alt="Bandeja Metal Bros">
+        <img src="https://i.postimg.cc/FzsDzhcX/bandejabros.jpg" alt="Bandeja Metal Bros">
         <h3>Bandeja Metal Bros</h3>
         <p class="price">R$ 24,99</p>
-        <button class="add" onclick="addToCart(7, 'Bandeja Metal Bros')">Adicionar</button>
+        <button class="add" onclick="addToCart(24.99, 'Bandeja Metal Bros')">Adicionar</button>
     </div>
 
      <div class="card" data-category="bandeja">
-        <img src="https://i.postimg.cc/jCT678FS/bandejaculturadab.webp" alt="Bandeja Cultura DAB">
+        <img src="https://i.postimg.cc/8Pz0PmBR/bandejaculturadab.jpg" alt="Bandeja Cultura DAB">
         <h3>Bandeja Metal Cultura DAB</h3>
         <p class="price">R$ 29,99</p>
-        <button class="add" onclick="addToCart(7, 'Bandeja Cultura DAB')">Adicionar</button>
+        <button class="add" onclick="addToCart(29.99, 'Bandeja Cultura DAB')">Adicionar</button>
     </div>
     
 <!-- CUIA -->
 
 <div class="card" data-category="cuias">
-        <img src="https://i.postimg.cc/wymMRf0C/cuiavintage.jpg" alt="Cuia Abduzido Vintage">
-        <h3>Cuia Abduzido Vintage UN </h3>
+        <img src="https://i.postimg.cc/ncLHm5tt/cuias.jpg" alt="Cuia Diversas">
+        <h3>Cuia Diversas UN </h3>
         <p class="price">R$ 19,99</p>
-        <button class="add" onclick="addToCart(7, 'Cuia Abduzido Vintage')">Adicionar</button>
+        <button class="add" onclick="addToCart(19.99, 'Cuia Diversas')">Adicionar</button>
     </div>
 
 
 <!-- CINZEIROS -->
 
 <div class="card" data-category="cinzeiro">
-        <img src="https://i.postimg.cc/8fpCzV5b/cinzeiroespantalho.webp" alt="Cinzeiro Metal Espantalho">
-        <h3>Cinzeiro Metal Espantalho </h3>
+        <img src="https://i.postimg.cc/pTkJg3SJ/cinzeiro.jpg" alt="Cinzeiro Metal Diversos">
+        <h3>Cinzeiro Metal Diversos </h3>
         <p class="price">R$ 14,99</p>
-        <button class="add" onclick="addToCart(7, 'Cinzeiro Metal Espantalho')">Adicionar</button>
-    </div>
-
-    <div class="card" data-category="cinzeiro">
-        <img src="https://i.postimg.cc/t1rbNVC5/cinzeiroabobora.jpg" alt="Cinzeiro Metal Abóbora">
-        <h3>Cinzeiro Metal Abóbora </h3>
-        <p class="price">R$ 14,99</p>
-        <button class="add" onclick="addToCart(7, 'Cinzeiro Metal Abóbora')">Adicionar</button>
-    </div>
-
-       <div class="card" data-category="cinzeiro">
-        <img src="https://i.postimg.cc/BLxgG2Lj/cinzeirouniverso7.jpg" alt="Cinzeiro Metal Universo">
-        <h3>Cinzeiro Metal Universo </h3>
-        <p class="price">R$ 14,99</p>
-        <button class="add" onclick="addToCart(7, 'Cinzeiro Metal Universo')">Adicionar</button>
+        <button class="add" onclick="addToCart(14.99, 'Cinzeiro Metal Diversos')">Adicionar</button>
     </div>
 
 <!-- CASES -->
 
 <div class="card" data-category="case">
-        <img src="https://i.postimg.cc/tZ7Lc5zJ/casehimalaya.webp" alt="Case Himalaya Spliff">
+        <img src="https://i.postimg.cc/kgnhD3rK/casehimalaya.jpg" alt="Case Himalaya Spliff">
         <h3>Case Himalaya Spliff </h3>
         <p class="price">R$ 34,99</p>
-        <button class="add" onclick="addToCart(7, 'Case Himalaya Spliff')">Adicionar</button>
+        <button class="add" onclick="addToCart(34.99, 'Case Himalaya Spliff')">Adicionar</button>
     </div>
 
 
 <!-- DICHAVADORES -->
 
 <div class="card" data-category="dichavador">
-        <img src="https://i.postimg.cc/LghSwvbW/dichavadores.jpg" alt="Dichavador Sortido">
+        <img src="https://i.postimg.cc/8kRHvKmZ/dichavadordiversos.jpg" alt="Dichavador Sortido">
         <h3>Dichavador Sortido UN</h3>
         <p class="price">R$ 9,99</p>
-        <button class="add" onclick="addToCart(7,'Dichavador Sortido')">Adicionar</button>
+        <button class="add" onclick="addToCart(9.99,'Dichavador Sortido')">Adicionar</button>
     </div>
 
 <!-- TESOURAS -->
 
 <div class="card" data-category="tesoura">
-        <img src="https://i.postimg.cc/rRDdjyyq/tesoura.jpg" alt="Tesoura de Metal Dobrável">
+        <img src="https://i.postimg.cc/9FxQN2Bw/tesouradobravel.jpg" alt="Tesoura de Metal Dobrável">
         <h3>Tesoura de Metal Dobrável</h3>
         <p class="price">R$ 19,99</p>
-        <button class="add" onclick="addToCart(7,'Tesoura de Metal Dobrável')">Adicionar</button>
+        <button class="add" onclick="addToCart(19.99,'Tesoura de Metal Dobrável')">Adicionar</button>
     </div>
 
 </section>
@@ -459,7 +470,20 @@
 </footer>
 
 <script>
-let cart = [];
+// 1. Ao iniciar, tentamos buscar o carrinho salvo no navegador.
+// O localStorage salva tudo como TEXTO, por isso usamos JSON.parse para transformar de volta em ARRAY/OBJETO.
+let cart = JSON.parse(localStorage.getItem("moonhead_cart")) || [];
+
+// Assim que a página carrega, já desenhamos o carrinho salvo e atualizamos os números do topo
+document.addEventListener("DOMContentLoaded", () => {
+    renderCart();
+});
+
+// 2. Função para salvar o estado atual do carrinho no navegador
+function saveCartToStorage() {
+    // Usamos JSON.stringify porque o localStorage SÓ aceita strings (textos)
+    localStorage.setItem("moonhead_cart", JSON.stringify(cart));
+}
 
 function addToCart(price, name) {
     const item = cart.find(prod => prod.name === name);
@@ -468,7 +492,8 @@ function addToCart(price, name) {
     } else {
         cart.push({ price, name, quantity: 1 });
     }
-    document.getElementById("floating-cart").style.display = "block"; // Mostra o carrinho ao adicionar
+    
+    saveCartToStorage(); // 💾 SALVA no localStorage após adicionar
     renderCart();
 }
 
@@ -478,7 +503,8 @@ function removeItem(index) {
     } else {
         cart.splice(index , 1);
     }
-    if(cart.length === 0) document.getElementById("floating-cart").style.display = "none";
+    
+    saveCartToStorage(); // 💾 SALVA no localStorage após remover
     renderCart();
 }
 
@@ -486,14 +512,15 @@ function renderCart() {
     const cartList = document.getElementById("cart-list");
     const totalDisplay = document.getElementById("total");
     const cartCount = document.getElementById("cart-count");
-
+    
     cartList.innerHTML = "";
-    let totalAcumulado = 0; 
-    let totalItem = 0;
+    let totalAcumulado = 0;
+    let totalItens = 0;
 
     cart.forEach((item, index) => {
         totalAcumulado += item.price * item.quantity;
-        totalItem += item.quantity; 
+        totalItens += item.quantity;
+
         const li = document.createElement("li");
         li.style.display = "flex";
         li.style.justifyContent = "space-between";
@@ -511,8 +538,9 @@ function renderCart() {
         `;
         cartList.appendChild(li);
     });
+
     totalDisplay.innerText = totalAcumulado.toFixed(2);
-    cartCount.innerText = totalItem;
+    if (cartCount) cartCount.innerText = totalItens;
 }
 
 function filterProducts(category) {
@@ -526,31 +554,54 @@ function filterProducts(category) {
     });
 }
 
-function finalizarCompra() {
-    if(cart.length === 0) return;
-    let mensagem = "☾ *Novo Pedido - Moon HeadShop*\n\n";
-    let totalPedido = 0;
-    cart.forEach(item => {
-        mensagem += `• *${item.quantity}x* ${item.name} - R$ ${(item.price * item.quantity).toFixed(2)}\n`;
-        totalPedido += item.price * item.quantity;
-    });
-    
-    mensagem += `\n*Total:* R$ ${totalPedido.toFixed(2)}`;
-    mensagem += `• *Total:* R$ ${totalPedido.toFixed(2)}\n`;
-    mensagem += `• *Pagamento:* (Informe aqui: Pix, Cartão ou Dinheiro)\n`;
-    mensagem += `• *Endereço:* (Informe seu endereço completo)\n`;
-
-    const numero = "557184565154"; 
-    window.open(`https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`, "_blank");
-}
-
 function toggleCart() {
     const cartElement = document.getElementById("floating-cart");
-    
     if (cartElement.style.display === "block") {
         cartElement.style.display = "none";
     } else {
         cartElement.style.display = "block";
+    }
+}
+
+function finalizarCompra() {
+    if(cart.length === 0) {
+        alert("Seu carrinho está vazio!");
+        return;
+    }
+
+    let mensagem = "☾ *Novo Pedido - Moon HeadShop*\n\n";
+    let totalPedido = 0;
+
+    cart.forEach(item => {
+        let subtotal = item.price * item.quantity;
+        mensagem += `• *${item.quantity}x* ${item.name} - R$ ${subtotal.toFixed(2)}\n`;
+        totalPedido += subtotal;
+    });
+
+    mensagem += `\n*Total:* R$ ${totalPedido.toFixed(2)}\n`;
+    mensagem += `• *Pagamento:* (Informe aqui: Pix, Cartão ou Dinheiro)\n`;
+    mensagem += `• *Endereço:* (Informe seu endereço completo)\n`;
+
+    // 🧹 OPCIONAL: Se você quiser LIMPAR o carrinho após finalizar a compra, descomente as 2 linhas abaixo:
+    // cart = [];
+    // localStorage.removeItem("moonhead_cart");
+
+    const numero = "557184565154"; 
+    const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
+    window.open(url, "_blank");
+}
+
+function clearCart() {
+    if(cart.length === 0) {
+        alert("Seu carrinho já está vazio!");
+        return;
+    }
+
+    const confirmar = confirm("Tem certeza que deseja esvaziar o carrinho?");
+    if(confirmar) {
+        cart = [];
+        localStorage.removeItem("moonhead_cart");
+        renderCart();
     }
 }
 
